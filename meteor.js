@@ -1,12 +1,34 @@
 
-Resolutions = new Mongo.Collection('resolutions');
+const Tasks = new Mongo.Collection('tasks');
 
 if (Meteor.isClient) {
 
 Template.body.helpers({
- 	 resolutions: function() { return Resolutions.find(); }
+ 	 tasks: function() { return Tasks.find(); }
  
 });
+
+Template.body.events({
+  'submit .newtask'(event){
+    
+    //prevent default submit
+    event.preventDefault();
+    
+    //fetch value
+    const target=event.target;
+    const text= target.text.value;
+    
+    //insertit to db
+  Tasks.insert({
+    text,
+    createdAt: new Date(),
+    
+  });
+  target.text.value=' ';
+  }
+})
+
+
 }
 
 if (Meteor.isServer) {

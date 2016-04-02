@@ -3,13 +3,19 @@
 </head>
 
 <body>
+<form class="newtask">
+  
+  <input type="text" name="text" placeholder="Add in new tasks" required value="" />
+  
+</form> 
 <ul>
-  {{#each resolutions}}
-  {{> resolution}}
+  {{#each tasks}}
+  {{> task}}
   {{/each}}
 </ul>
+
 </body>
 
-<template name="resolution">
-   <li>{{title}}</li>
+<template name="task">
+   <li>{{text}}</li>
 </template>
