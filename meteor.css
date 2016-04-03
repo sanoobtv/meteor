@@ -45,10 +45,7 @@ h1 {
   border-bottom: 1px solid rgba(0,0,0,0.3);
 }
  
-.new-resolution input:focus{
-  outline: 0;
-}
- 
+
 ul {
   margin: 0;
   padding: 0;
