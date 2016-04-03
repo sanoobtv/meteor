@@ -1,19 +1,23 @@
 <head>
-  <title>updatedaaaa</title>
+  <title align='centre'>updatedaaaa</title>
 </head>
 
 <body>
+  <div class="container">
+    <header>
+    <h1>Add a new one</h1>
 <form class="newtask">
   
   <input type="text" name="text" placeholder="Add in new tasks" required value="" />
   
 </form> 
+</header>
 <ul>
   {{#each tasks}}
   {{> task}}
   {{/each}}
 </ul>
-
+</div>
 </body>
 
 <template name="task">
