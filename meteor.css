@@ -75,10 +75,10 @@ li .text {
   margin-left: 10px;
 }
 
-li.checked {
+.toggle-checked:checked +span{
   color: #888;
 }
 
-li.checked .text {
+.toggle-checked:checked +span {
   text-decoration: line-through;
 }

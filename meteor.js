@@ -4,8 +4,17 @@ const Tasks = new Mongo.Collection('tasks');
 if (Meteor.isClient) {
 
 Template.body.helpers({
- 	 tasks: function() { return Tasks.find({},{sort: {createdAt: 1}}); }
+ 	 tasks: function() {
 
+if (Session.get('hideFinished'))
+{
+     return Tasks.find({checked: {$ne: true}},{sort: {createdAt: 1}});
+   }
+     else {
+       return Tasks.find();
+     }
+},
+hideFinished: function(){return Session.get('hideFinished')}
 });
 
 Template.body.events({
@@ -25,8 +34,19 @@ Template.body.events({
 
   });
   target.text.value=' ';
-  }
+},
+
+'change .hide-finished': function(event)
+{
+Session.set('hideFinished', event.target.checked);
+
+}
 })
+
+
+
+
+
 Template.task.events({
 'click .toggle-checked': function(){
 
