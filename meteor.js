@@ -60,7 +60,10 @@ Tasks.update(this._id, {$set: {checked: !this.checked}})
 }
 
 });
+Accounts.ui.config({
 
+  passwordSignupFields: "USERNAME_ONLY"
+});
 }
 
 if (Meteor.isServer) {

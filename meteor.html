@@ -7,17 +7,21 @@
     <header>
     <h1>Add a new one</h1>
     <label class="hide-finished"><input type="checkbox" checked="{{hideFinished}}">Hide cheked resolution </label>
+    {{# if currentUser}}
 <form class="newtask">
 
   <input type="text" name="text" placeholder="Add in new tasks" required value="" />
 
 </form>
+{{/if}}
 </header>
 <ul>
   {{#each tasks}}
   {{> task}}
   {{/each}}
 </ul>
+{{> loginButtons}}
+
 </div>
 </body>
 
