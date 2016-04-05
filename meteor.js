@@ -66,6 +66,10 @@ Accounts.ui.config({
 });
 }
 
+//db.meteor_accounts_loginServiceConfiguration.remove({"service":"google"})
+//resetting facebook login
+
+
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
