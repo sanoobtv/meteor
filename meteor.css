@@ -82,11 +82,3 @@ li.checked {
 li.checked .text {
   text-decoration: line-through;
 }
-
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
