@@ -14,48 +14,35 @@ if (Session.get('hideFinished'))
        return Tasks.find();
      }
 },
-hideFinished: function(){return Session.get('hideFinished')}
+  hideFinished: function(){return Session.get('hideFinished')}
 });
 
 Template.body.events({
   'submit .newtask'(event){
 
     //prevent default submit
-    event.preventDefault();
-
+    event.defaultPrevented();
     //fetch value
     const target=event.target;
     const text= target.text.value;
-
     //insertit to db
-  Tasks.insert({
-    text,
-    createdAt: new Date(),
-
-  });
-  target.text.value=' ';
+      Meteor.call("addTask", text);
+      target.text.value=' ';
 },
 
 'change .hide-finished': function(event)
 {
 Session.set('hideFinished', event.target.checked);
-
 }
 })
 
-
-
-
-
 Template.task.events({
 'click .toggle-checked': function(){
-
-Tasks.update(this._id, {$set: {checked: !this.checked}})
-
+Meteor.call("updateTask",this._id, !this.checked);
 },
 
   'click .delete': function(){
-    Tasks.remove(this._id);
+    Meteor.call("deleteTask", this._id);
 
 }
 
@@ -75,3 +62,23 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+Meteor.methods({
+          addTask: function(text)
+          {
+              Tasks.insert({
+              text: text,
+              createdAt: new Date(),
+                          });
+            },
+
+            updateTask: function(id, checked)
+            {
+              Tasks.update(id, {$set: {checked: checked}});
+            },
+
+            deleteTask: function(id)
+            {
+              Tasks.remove(id);
+            }
+                });
