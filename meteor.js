@@ -23,7 +23,12 @@ if (Meteor.isClient) {
             return Session.get('hideFinished')
         }
     });
+Template.task.helpers({
+isOwner: function(){
+  return this.owner===Meteor.userId();
+}
 
+});
     Template.body.events({
         'submit .newtask' (event) {
 
@@ -50,6 +55,9 @@ if (Meteor.isClient) {
         'click .delete': function() {
             Meteor.call("deleteTask", this._id);
 
+        },
+        'click .toggle-private': function() {
+            Meteor.call("setPrivate", this._id, !this.private);
         }
 
     });
@@ -69,7 +77,16 @@ if (Meteor.isServer) {
 
     });
     Meteor.publish("tasks", function tasksPublication() {
-        return Tasks.find();
+        return Tasks.find ({
+          $or: [
+            {
+              private: {$ne: true}
+            },
+            {
+              owner:this.userId
+            }
+          ]
+        })
     });
 }
 Meteor.methods({
@@ -82,14 +99,36 @@ Meteor.methods({
     },
 
     updateTask: function(id, checked) {
-        Tasks.update(id, {
-            $set: {
-                checked: checked
-            }
+      var tk = Tasks.findOne(id);
+
+      if (tk.owner !== Meteor.userId())
+      {
+          throw new Meteor.Error('no');
+      }
+        Tasks.update(id, {$set: {checked: checked}
         });
     },
 
     deleteTask: function(id) {
+      var tk = Tasks.findOne(id);
+
+      if (tk.owner !== Meteor.userId())
+      {
+          throw new Meteor.Error('no');
+      }
+
         Tasks.remove(id);
-    }
+    },
+
+    setPrivate: function(id, private)
+    {
+        var tk = Tasks.findOne(id);
+        if (tk.owner !== Meteor.userId())
+        {
+            throw new Meteor.Error('no');
+        }
+        Tasks.update(id, {$set: {       private: private                }});
+
+
+      }
 });

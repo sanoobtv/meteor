@@ -1,43 +1,40 @@
 <head>
-  <title align='centre'>updatedaaaa</title>
+    <title align='centre'>updatedaaaa</title>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-    <h1>Add a new one</h1>
-    <label class="hide-finished"><input type="checkbox" checked="{{hideFinished}}">Hide cheked resolution </label>
-    {{# if currentUser}}
-<form class="newtask">
+    <div class="container">
+        <header>
+            <h1>Add a new one</h1>
+            <label class="hide-finished">
+                <input type="checkbox" checked="{{hideFinished}}">Hide cheked resolution </label>
+            {{# if currentUser}}
+            <form class="newtask">
 
-  <input type="text" name="text" placeholder="Add in new tasks" required value="" />
+                <input type="text" name="text" placeholder="Add in new tasks" required value="" />
 
-</form>
-{{/if}}
-</header>
-<ul>
-  {{#each tasks}}
-  {{> task}}
-  {{/each}}
-</ul>
-{{> loginButtons}}
+            </form>
+            {{/if}}
+        </header>
+        <ul>
+            {{#each tasks}} {{> task}} {{/each}}
+        </ul>
+        {{> loginButtons}}
 
-</div>
+    </div>
 </body>
 
 <template name="task">
-   <li>
-      <input type="checkbox" checked="{{checked}}" class="toggle-checked">
-      {{#if isOwner}}
-            <button class="toggle-private">
-                {{#if private}}
-                    Private
-                    {{else}}
-                    Public
-{{/if}}
-      </button>
-      {{/if}}
-     <span class="text">{{text}}</span>
-<button class="delete">Rem</button>
-   </li>
+<li> {{#if isOwner}}
+
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked">
+    <button class="toggle-private">
+        {{#if private}} Private {{else}} Public {{/if}}
+    </button>
+    {{/if}}
+    <span class="text">{{text}}</span>
+    {{#if isOwner}}
+    <button class="delete">Rem</button>
+    {{/if}}
+</li>
 </template>
