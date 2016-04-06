@@ -2,7 +2,7 @@
 const Tasks = new Mongo.Collection('tasks');
 
 if (Meteor.isClient) {
-
+Meteor.subscribe("tasks");
 Template.body.helpers({
  	 tasks: function() {
 
@@ -21,7 +21,7 @@ Template.body.events({
   'submit .newtask'(event){
 
     //prevent default submit
-    event.defaultPrevented();
+  //  event.preventedDefault();
     //fetch value
     const target=event.target;
     const text= target.text.value;
@@ -60,6 +60,10 @@ Accounts.ui.config({
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+
+  });
+  Meteor.publish("tasks", function tasksPublication(){
+    return Tasks.find();
   });
 }
 
