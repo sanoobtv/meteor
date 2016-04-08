@@ -23,12 +23,8 @@ if (Meteor.isClient) {
             return Session.get('hideFinished')
         }
     });
-Template.task.helpers({
-isOwner: function(){
-  return this.owner===Meteor.userId();
-}
 
-});
+
     Template.body.events({
         'submit .newtask' (event) {
 
@@ -44,29 +40,9 @@ isOwner: function(){
 
         'change .hide-finished': function(event) {
             Session.set('hideFinished', event.target.checked);
-        }
+        2}
     })
-
-    Template.task.events({
-        'click .toggle-checked': function() {
-            Meteor.call("updateTask", this._id, !this.checked);
-        },
-
-        'click .delete': function() {
-            Meteor.call("deleteTask", this._id);
-
-        },
-        'click .toggle-private': function() {
-            Meteor.call("setPrivate", this._id, !this.private);
-        }
-
-    });
-    Accounts.ui.config({
-
-        passwordSignupFields: "USERNAME_ONLY"
-    });
 }
-
 //db.meteor_accounts_loginServiceConfiguration.remove({"service":"google"})
 //resetting facebook login
 

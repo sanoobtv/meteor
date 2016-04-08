@@ -23,18 +23,3 @@
 
     </div>
 </body>
-
-<template name="task">
-<li> {{#if isOwner}}
-
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked">
-    <button class="toggle-private">
-        {{#if private}} Private {{else}} Public {{/if}}
-    </button>
-    {{/if}}
-    <span class="text">{{text}}</span>
-    {{#if isOwner}}
-    <button class="delete">Rem</button>
-    {{/if}}
-</li>
-</template>
