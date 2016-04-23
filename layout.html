@@ -1,5 +1,5 @@
 <head>
-    <title align='centre'>updatedaaaa</title>
+    <title align='centre'>A Demo APp</title>
 </head>
 
 <body>
@@ -7,8 +7,8 @@
         <header>
             <h1>Add a new one</h1>
             <label class="hide-finished">
-                <input type="checkbox" checked="{{hideFinished}}">Hide cheked resolution </label>
-            {{# if currentUser}}
+                <input type="checkbox" checked="{{hideFinished}}">Hide cheked resolution </label> <!--{{a helper class is used }} -->
+            {{# if currentUser}} <!--// form only displayed if logged in.. -->
             <form class="newtask">
 
                 <input type="text" name="text" placeholder="Add in new tasks" required value="" />
@@ -16,9 +16,10 @@
             </form>
             {{/if}}
         </header>
-        <ul>
+        <ul>  <!--// task template is obtained from components folder and iterated -->
             {{#each tasks}} {{> task}} {{/each}}
         </ul>
+        <!-- adding login controls.-->
         {{> loginButtons}}
 
     </div>

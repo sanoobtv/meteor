@@ -1,15 +1,17 @@
-
+//the template tags are kept here.
+//everything in meteor tags are compiled in to meteor templates.
+//in main htmlfile use {{> templatename}}
 <template name="task">
-<li> {{#if isOwner}}
+  //if statement
+    <li> {{#if isOwner}}
 
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked">
-    <button class="toggle-private">
-        {{#if private}} Private {{else}} Public {{/if}}
-    </button>
-    {{/if}}
-    <span class="text">{{text}}</span>
-    {{#if isOwner}}
-    <button class="delete">Rem</button>
-    {{/if}}
-</li>
+        <input type="checkbox" checked="{{checked}}" class="toggle-checked">
+        <button class="toggle-private">
+            {{#if private}} Private {{else}} Public {{/if}}
+        </button>
+        {{/if}}
+        <span class="text">{{text}}</span> {{#if isOwner}}
+        <button class="delete">Rem</button>
+        {{/if}}
+    </li>
 </template>
