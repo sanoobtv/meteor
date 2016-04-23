@@ -7,7 +7,7 @@ if (Meteor.isClient) {
   //remove auto publish package from meteor app
   //subscribing to data from publications.
   //without the publish method in the server part, we wont be able to retrive data from the collection.
-  //
+
     Meteor.subscribe("tasks");
     Template.body.helpers({
         tasks: function() {
@@ -91,10 +91,10 @@ Meteor.methods({
   },
 
     updateTask: function(id, checked) {
-    var tempid = Tasks.findOne(id);
+    var tempTask = Tasks.findOne(id);
     //the id of the task along with the checked status is passed on to the function.
     //the owners id is compared against the actual id
-    if (tempid.owner !== Meteor.userId()) {
+    if (tempTask.owner !== Meteor.userId()) {
         throw new Meteor.Error('no');
     }
     //for updating the task list pass id and update the checked field.
@@ -106,9 +106,9 @@ Meteor.methods({
 },
 
     deleteTask: function(id) {
-      var tempid = Tasks.findOne(id);
+      var tempTask = Tasks.findOne(id);
       //confirming authority then call the remove function
-      if (tempid.owner !== Meteor.userId()) {
+      if (tempTask.owner !== Meteor.userId()) {
           throw new Meteor.Error('no');
       }
 
@@ -116,8 +116,8 @@ Meteor.methods({
   },
     //function to set if the task is to be made private or not. id is passed along with the state of the text obtained from the button.
     setPrivate: function(id, private) {
-      var tempid = Tasks.findOne(id);
-      if (tempid.owner !== Meteor.userId()) {
+      var tempTask = Tasks.findOne(id);
+      if (tempTask.owner !== Meteor.userId()) {
           throw new Meteor.Error('no');
       }
       Tasks.update(id, {
