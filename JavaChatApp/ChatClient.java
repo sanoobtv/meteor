@@ -25,6 +25,7 @@ import javax.swing.*;
 //create the GUI of the client side
 public class ChatClient extends WindowAdapter implements ActionListener {
 
+//
 JFrame frame;
 JList list;
 JList userList;
@@ -95,7 +96,7 @@ public ChatClient(String name) throws IOException
 
         button.addActionListener(this);
         lout.addActionListener(this);
-
+//GUI initialisation.
         panel.add(ll);
         panel.add(tf);
         panel.add(button);
@@ -113,15 +114,11 @@ public ChatClient(String name) throws IOException
         label1.setBounds(10, 20, 100, 20);
         scrollpane.setBounds(10, 40, 400, 150);
         label2.setBounds(450, 20, 100, 20);
-
         userListscroll.setBounds(450, 40, 100, 150);
-
         label.setBounds(10, 250, 80, 30);
         tf.setBounds(65, 250, 300, 30);
-
         broadcast.setSelected(true);
         userList.setSelectedIndex(0);
-
         label3.setBounds(200, 200, 90, 30);
         broadcast.setBounds(280, 200, 90, 30);
         priva.setBounds(390, 200, 90, 30);

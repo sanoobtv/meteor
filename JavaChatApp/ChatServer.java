@@ -25,7 +25,7 @@ import java.awt.LayoutManager;
 import java.awt.ScrollPane;
 import java.io.*;
 import java.net.*;
-import java.time.Clock;
+//import java.time.*;
 import java.util.*;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -103,7 +103,7 @@ prm=new JLabel();
             scrollPane1.setSize(300, 200);
             scrollPane1.setBackground(Color.blue);
             list2.setBackground(Color.white);
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             //adding components to the frame
             frame.add(scrollPane);
@@ -131,17 +131,19 @@ prm=new JLabel();
 
 
             //counting the number of registered users buy traversing the login file.Enc.doc
-            try (BufferedReader br = new BufferedReader(new FileReader("Enc.doc"))) {
-            String sCurrentLine;
-            while ((sCurrentLine = br.readLine()) != null)
-            {
+        try
+{
+        BufferedReader br = new BufferedReader(new FileReader("Enc.doc"));
+        String sCurrentLine;
+        while ((sCurrentLine = br.readLine()) != null)
+        {
                 count = count + 1;
-            }}
-
-        catch (IOException e) {
-            JOptionPane.showMessageDialog(ChatServer.l1, "Cannot connect to server file");
-        }//setting the tota no of reisterd users
-             totalusers.setText("Total No of registered Users :"+String.valueOf(count));
+        }
+}catch (IOException e) {
+        JOptionPane.showMessageDialog(ChatServer.l1, "Cannot connect to server file");
+}
+        //setting the tota no of registered users
+        totalusers.setText("Total No of registered Users :"+String.valueOf(count));
 
 
         ss = new ServerSocket(1004);	// create server socket
